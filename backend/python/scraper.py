@@ -2,11 +2,22 @@ import csv
 from jobspy import scrape_jobs
 import json
 import re
+import sys
+
+
+
+args = sys.argv[1:]  # Excludes the script name
+
+
+search_term = args[0]
+location = args[1]
+
+
 
 jobs = scrape_jobs(
     site_name=["indeed", "linkedin", "zip_recruiter", "glassdoor"],
-    search_term="software engineer",
-    location="Dallas, TX",
+    search_term = search_term,
+    location= location ,
     results_wanted=1,
     hours_old=72, # (only Linkedin/Indeed is hour specific, others round up to days old)
     country_indeed='USA',  # only needed for indeed / glassdoor

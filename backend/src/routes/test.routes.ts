@@ -31,8 +31,17 @@ const executePython = async (script: string, args: string[]) => {
 };
 
 router.get("/runpy", async (req, res) => {
+  const location = req.query.location;
+  const search_term = req.query.search_term;
+
+  console.log(location);
+  console.log(search_term);
+
   try {
-    const result = await executePython("python/scraper.py", ["8", "6"]);
+    const result = await executePython("python/scraper.py", [
+      search_term as string,
+      location as string,
+    ]);
 
     res.json({ result: result });
   } catch (error) {
